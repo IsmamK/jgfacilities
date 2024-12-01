@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'; // Import NavLink
 import { FaTachometerAlt, FaWarehouse, FaTruck, FaStore, FaFileInvoice, FaChartPie, FaUserShield, FaTimes , FaBox} from 'react-icons/fa'; // Import icons
-
+import { useAuth } from '../../context/AuthContext';
 const AdminSidebar = ({ isOpen, toggleSidebar }) => {
+  const { logout } = useAuth(); 
+
   return (
     <div
       className={`z-10 dark:text-white fixed dark:bg-blue-800 lg:relative lg:translate-x-0 flex flex-col p-10 dark:border-black border-r border-gray-50 min-h-screen bg-white transition-transform duration-300 ${
@@ -106,15 +108,22 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
             <FaBox className='mr-2' /> Visit Live Website 
           </NavLink>
         </li>
+
+        <li>
+          <NavLink
+            to="create-admin" // Update this to your products route
+            className={({ isActive }) =>
+              `flex items-center rounded-lg font-bold p-2 ${isActive ? 'bg-blue-400 text-white' : 'hover:bg-blue-400 hover:text-white'}`
+            }
+          >
+            <FaBox className='mr-2' /> Create Admin
+          </NavLink>
+        </li>
        
       </ul>
       <div className="flex mt-20 justify-between items-center border-t border-gray-300 pt-8">
-        <button className="btn btn-xs dark:bg-warning text-black btn-warning">Log Out</button>
-        <div className="avatar">
-          <div className="w-10 mask mask-squircle">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" alt="User Avatar" />
-          </div>
-        </div>
+        <button className="btn btn-md dark:bg-warning text-black btn-warning" onClick={logout}>Log Out</button>
+        
       </div>
     </div>
   );

@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useScrollAnimation from '../../useScrollAnimation';
+
 
 const CarouselComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [images, setImages] = useState([]);
+  useScrollAnimation()
 
   useEffect(() => {
     // Fetch the data from the API
@@ -31,7 +34,7 @@ const CarouselComponent = () => {
     dotsClass: "slick-dots slick-thumb",
     fade: true,
     infinite: true, // Loop the carousel
-    speed: 1000, // Transition speed
+    speed: 3000, // Transition speed
     autoplay: true, // Enable auto-slide
     autoplaySpeed: 1000, // Interval between auto-slides (in ms)
     slidesToShow: 1, // Show one slide at a time

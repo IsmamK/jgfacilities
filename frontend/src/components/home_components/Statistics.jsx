@@ -50,12 +50,12 @@ const Statistics = () => {
           {/* Text - end */}
 
           <div
-            className="grid grid-cols-2 gap-6 rounded-lg p-6 md:grid-cols-4 md:gap-8 md:p-8 animate-on-scroll slide-left"
+            className="grid grid-cols-2 gap-6 rounded-lg p-6 md:grid-cols-4 md:gap-8 md:p-8 animate-on-scroll fade-in"
             style={{ backgroundColor: data.numbersBgColor }}
           >
             {/* Dynamically generated stats */}
             {data.stats.map((stat, index) => (
-              <div key={index} className="flex flex-col items-center animate-on-scroll jelly">
+              <div key={index} className="flex flex-col items-center ">
                 <div
                   className="text-xl font-bold sm:text-2xl md:text-3xl"
                   style={{ color: data.numbersTextColor }}

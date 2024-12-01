@@ -34,7 +34,7 @@ const Cards = () => {
           {data.cards.map((card, index) => (
             <div 
               key={index} 
-              className="relative w-80 h-80 group animate-on-scroll slide-up"
+              className="relative w-60 h-60 group animate-on-scroll slide-up"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
@@ -45,7 +45,7 @@ const Cards = () => {
                 className="object-cover w-full h-full rounded-lg transition-transform transform hover:border-8 hover:border-yellow-300" 
               />
               
-              <div className="absolute bottom-0 text-center w-full p-10 font-extrabold">
+              <div className="absolute bottom-0 text-center w-full p-6 font-extrabold">
                   {/* Background layer with opacity */}
                   <div
                     style={{ backgroundColor: data.overlayColor, color: data.overlayTextColor }}
@@ -53,9 +53,9 @@ const Cards = () => {
                   ></div>
                   
                   {/* Content layer without opacity */}
-                  <div className="relative z-10"  style={{  color: data.overlayTextColor }}>
+                  <div className="relative z-10 h-full"  style={{  color: data.overlayTextColor }}>
                     <h1 className=" font-bold">{card.title}</h1>
-                    <p className="text-sm mt-3 pt-3 text-left  border-t"     style={{ borderColor: data.overlayTextColor }} >
+                    <p className="text-sm  text-left  border-t"     style={{ borderColor: data.overlayTextColor }} >
                       {hoveredIndex === index ? card.additionalDetails : ""}
                     </p>
                   </div>

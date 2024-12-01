@@ -5,7 +5,7 @@ import { servicesData } from '../../servicesData.js';
 const Navbar = () => {
   const [navbarData, setNavbarData] = useState({
     logo: '',
-    logo2:"",
+    logo2: "",
     bgColor: '#ffffff', // Default background
     textColor: '#000000', // Default text
     buttonBgColor: '#007BFF',
@@ -25,11 +25,31 @@ const Navbar = () => {
 
   const routes = [
     { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Contact', path: '/contact' },
-    { label: 'Gallery', path: '/gallery' },
-    { label: 'Projects', path: '/projects' },
-    {
+    { label: 'About', path: '/about',
+      subItems:[
+        {
+          label:"Company Profile",
+          path:"/about#about1"
+
+        },
+        {
+          label:"Chairman's Message",
+          path:"/about#message"
+
+        },
+        {
+          label:"Mission,Vision and story",
+          path:"/about#about2"
+
+        },
+        {
+          label:"Team",
+          path:"/about#team"
+
+        },
+      ]
+     },
+     {
       label: 'Services',
       path: '/services',
       subItems: servicesData.map((service) => ({
@@ -37,6 +57,10 @@ const Navbar = () => {
         path: `/services/${service.slug}`,
       })),
     },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Gallery', path: '/gallery' },
+    { label: 'Contact', path: '/contact' },
+    
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -77,16 +101,18 @@ const Navbar = () => {
             isMenuOpen ? 'block' : 'hidden'
           } lg:flex items-center`}
         >
-          <ul className="flex flex-col lg:flex-row gap-4 lg:gap-6 p-4 lg:p-0">
+          <ul className="flex flex-col lg:flex-row gap-4 lg:gap-6 p-4 lg:p-0 lg:text-2xl">
             {routes.map((route, index) => (
               <li key={index} className="relative group">
                 {route.subItems ? (
                   <>
                     <div
-                      className="cursor-pointer hover:text-yellow-600 flex items-center lg:group-hover:text-yellow-600"
+                      className="cursor-pointer hover:text-yellow-600 flex items-center lg:hover:text-yellow-600"
                       onClick={() => toggleSubMenu(index)}
                     >
-                      {route.label}
+                      <div onMouseEnter={() => toggleSubMenu(index)}>
+                        {route.label}
+                      </div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4 ml-1"
@@ -99,8 +125,8 @@ const Navbar = () => {
                     <ul
                       className={`absolute right-0 top-8 bg-white shadow-md rounded-md p-2 w-48 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200 z-10 ${
                         openSubMenuIndex === index ? 'block' : 'hidden'
-                      } lg:block`}
-                     
+                      }`}
+                      onMouseLeave={() => toggleSubMenu(index)}
                     >
                       {route.subItems.map((subItem, subIndex) => (
                         <li
@@ -125,11 +151,7 @@ const Navbar = () => {
                   >
                     {route.label}
                   </Link>
-
-                  
                 )}
-
-                
               </li>
             ))}
           </ul>

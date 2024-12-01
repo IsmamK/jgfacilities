@@ -17,18 +17,16 @@ import LayoutsEditor from "./components/editor_components/LayoutsEditor";
 import ServicesEditor from "./components/editor_components/ServicesEditor";
 // import { LanguageProvider } from "./components/LanguageContext";
 import useScrollAnimation from "./useScrollAnimation";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
+import Login from "./components/Login";
+import CreateAdmin from "./components/CreateAdmin";
 
 
 const App = () => {
   useScrollAnimation()
 
 
-  const fetchAboutPageData = async () => {
-    if (db) {
-      const aboutData = await db.aboutPage.find().exec();
-      console.log(aboutData);
-    }
-  };
   
   // Call the function where necessary
 
@@ -36,12 +34,16 @@ const App = () => {
   
   const router = createBrowserRouter([
     {
+      path: "/login",
+      element: <Login />,
+    },
+    {
       path: '/',
       element: <Layout />,
       children: [
         { path: '', element: <Home /> },
         { path: 'home', element: <Home /> },
-        { path: 'about', element: <About data =   {fetchAboutPageData}/> },
+        { path: 'about', element: <About /> },
         { path: 'contact', element: <Contact /> },
         { path: 'gallery', element: <Gallery /> },
         { path: 'projects', element: <Projects /> },
@@ -60,7 +62,7 @@ const App = () => {
 
     {
       path: '/admin',
-      element: <AdminLayout />,
+      element: <PrivateRoute element={<AdminLayout />} />,
       children: [
         { path: '', element: <HomeEditor /> },
         { path: 'layouts', element: <LayoutsEditor /> },
@@ -70,6 +72,7 @@ const App = () => {
         { path: 'contact', element: <ContactEditor /> },
         { path: 'gallery', element: <GalleryEditor /> },
         { path: 'projects', element: <ProjectsEditor /> },
+        { path: 'create-admin', element: <CreateAdmin /> },
         {
           path: 'services',
           element: <Services />,
@@ -90,5 +93,8 @@ const App = () => {
 )
 };
 
-export default App;
- 
+export default () => (
+  <AuthProvider>
+    <App />
+  </AuthProvider>
+);

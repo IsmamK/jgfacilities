@@ -50,7 +50,7 @@ const GridCards = ({ divider, }) => {
         <p className="text-center text-lg md:text-2xl lg:text-3xl mb-10">{cardData.subtitle}</p>
 
         <div
-          className="grid gap-10 animate-on-scroll fade-in"
+          className="grid gap-10 "
           style={{
             gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           }}
@@ -58,7 +58,7 @@ const GridCards = ({ divider, }) => {
           {cardData.gridCards.map((card, index) => (
             <div
               key={index}
-              className={`flip-card ${flippedCardIndex === index ? 'flipped' : ''} `}
+              className={`animate-on-scroll slide-up flip-card ${flippedCardIndex === index ? 'flipped' : ''} `}
               onClick={() => handleClick(index)}
               onMouseEnter={() => handleHover(index, true)}
               onMouseLeave={() => handleHover(index, false)}

@@ -49,7 +49,7 @@ const Hero = () => {
       
 
       {/* Hero Content */}
-      <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between w-full max-w-7xl gap-12">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl gap-12">
         {/* Left Section: Text */}
         <div className="lg:w-1/2 flex flex-col items-center lg:items-start gap-6 animate-on-scroll slide-left">
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
@@ -82,8 +82,8 @@ const Hero = () => {
         </div>
 
         {/* Right Section: Images */}
-        <div className="lg:w-1/2 relative flex items-center justify-center gap-6">
-          <div className="animate-on-scroll slide-up relative w-72 h-72 md:w-96 md:h-96 overflow-hidden rounded-xl shadow-xl transform hover:rotate-1 hover:scale-105 transition-transform">
+        <div className="lg:w-1/2 relative flex flex-col lg:flex-row items-center justify-center gap-20 lg:gap-6">
+          <div className="animate-on-scroll slide-up relative w-60 h-60 lg:w-72 lg:h-72 md:w-96 md:h-96 overflow-hidden rounded-xl shadow-xl transform hover:rotate-1 hover:scale-105 transition-transform">
             <img
               src={heroData.image1}
               alt={heroData.altText1}

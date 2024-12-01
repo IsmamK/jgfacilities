@@ -12,6 +12,7 @@ import NewsModal from './editor_modals/home_modals/NewsModal';
 import ContactModal from './editor_modals/home_modals/ContactModal';
 import LocationModal from './editor_modals/home_modals/LocationModal';
 import FeaturedVideoModal from './editor_modals/home_modals/FeaturedVideoModal';
+import AssociatesModal from './editor_modals/home_modals/AssociatesModal';
 
 const HomeEditor = ({ getDivider, availableShapes }) => {
   const [isCarouselOpen, setCarouselOpen] = useState(false);
@@ -22,6 +23,7 @@ const HomeEditor = ({ getDivider, availableShapes }) => {
   const [isGridCardsOpen, setGridCardsOpen] = useState(false);
   const [isWhyUsOpen, setWhyUsOpen] = useState(false);
   const [isOurClientsOpen, setOurClientsOpen] = useState(false);
+  const [isAssociatesOpen, setAssociatesOpen] = useState(false);
   const [isNewsOpen, setNewsOpen] = useState(false);
   const [isContactOpen, setContactOpen] = useState(false);
   const [isLocationOpen, setLocationOpen] = useState(false);
@@ -39,6 +41,7 @@ const HomeEditor = ({ getDivider, availableShapes }) => {
         <button className="btn btn-primary w-20 m-2" onClick={() => setGridCardsOpen(true)}>Grid Cards</button>
         <button className="btn btn-primary w-20 m-2" onClick={() => setWhyUsOpen(true)}>Why Us</button>
         <button className="btn btn-primary w-20 m-2" onClick={() => setOurClientsOpen(true)}>Our Clients</button>
+        <button className="btn btn-primary w-20 m-2" onClick={() => setAssociatesOpen(true)}>Associates</button>
         <button className="btn btn-primary w-20 m-2" onClick={() => setNewsOpen(true)}>News</button>
         <button className="btn btn-primary w-20 m-2" onClick={() => setContactOpen(true)}>Contact</button>
         <button className="btn btn-primary w-20 m-2" onClick={() => setLocationOpen(true)}>Location</button>
@@ -66,6 +69,7 @@ const HomeEditor = ({ getDivider, availableShapes }) => {
       <GridCardsModal isOpen={isGridCardsOpen} onClose={() => setGridCardsOpen(false)} />
       <WhyUsModal isOpen={isWhyUsOpen} onClose={() => setWhyUsOpen(false)} />
       <OurClientsModal isOpen={isOurClientsOpen} onClose={() => setOurClientsOpen(false)} />
+      <AssociatesModal isOpen={isAssociatesOpen} onClose={() => setAssociatesOpen(false)} />
       <NewsModal isOpen={isNewsOpen} onClose={() => setNewsOpen(false)} />
       <ContactModal isOpen={isContactOpen} onClose={() => setContactOpen(false)} />
       <LocationModal isOpen={isLocationOpen} onClose={() => setLocationOpen(false)} />

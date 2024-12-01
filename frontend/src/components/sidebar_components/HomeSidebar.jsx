@@ -8,7 +8,7 @@ const HomeSidebar = () => {
         {/* Home */}
         <a
           href="#hero"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaHome className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">Home</span>
@@ -17,7 +17,7 @@ const HomeSidebar = () => {
         {/* Services */}
         <a
           href="#services"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaToolbox className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">Services</span>
@@ -26,7 +26,7 @@ const HomeSidebar = () => {
         {/* Why Us */}
         <a
           href="#why-us"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaInfoCircle className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">Why Us</span>
@@ -35,7 +35,7 @@ const HomeSidebar = () => {
         {/* Clients */}
         <a
           href="#our-clients"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaUserFriends className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">Clients</span>
@@ -44,7 +44,7 @@ const HomeSidebar = () => {
         {/* News */}
         <a
           href="#news"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaNewspaper className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">News</span>
@@ -53,7 +53,7 @@ const HomeSidebar = () => {
         {/* Contact */}
         <a
           href="#contact"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaPhoneAlt className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">Contact</span>
@@ -62,7 +62,7 @@ const HomeSidebar = () => {
         {/* Statistics */}
         <a
           href="#statistics"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaChartBar className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">Statistics</span>
@@ -71,7 +71,7 @@ const HomeSidebar = () => {
         {/* Location */}
         <a
           href="#location"
-          className="group flex items-center justify-center space-x-4 p-4 w-16 h-16 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
+          className="group flex items-center justify-center space-x-4 p-4 w-12 h-12 bg-gray-800 rounded-full transition-all duration-300 ease-in-out transform hover:w-48 hover:rounded-lg hover:bg-gray-700 hover:pr-20"
         >
           <FaMapMarkerAlt className="text-xl group-hover:mr-4 transition-all duration-300" />
           <span className="hidden group-hover:inline text-sm">Location</span>

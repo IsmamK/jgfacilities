@@ -14,6 +14,8 @@ urlpatterns = [
     path('home/grid-cards/', GridCardsView.as_view(), name='grid_cards'),
     path('home/why-us/', WhyUsView.as_view(), name='why_us'),
     path('home/our-clients/', OurClientsView.as_view(), name='our_clients'),
+    path('home/associates/', AssociatesView.as_view(), name='associates'),
+
     path('home/news/', NewsView.as_view(), name='news'),
     path('home/contact/', ContactView.as_view(), name='contact'),
     path('home/location/', LocationView.as_view(), name='location'),
@@ -22,6 +24,7 @@ urlpatterns = [
     # About Section
     path('about/about1/', About1View.as_view(), name='about1'),
     path('about/about2/', About2View.as_view(), name='about2'),
+    path('about/message/', MessageView.as_view(), name='message'),
     path('about/faq/', FaqView.as_view(), name='faq'),
     path('about/team/', TeamView.as_view(), name='team'),
 

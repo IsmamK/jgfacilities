@@ -15,6 +15,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import StechBanner from '../components/home_components/StechBanner';
 import HomeSidebar from '../components/sidebar_components/HomeSidebar';
+import Associates from '../components/home_components/Associates';
 
 const Home = () => {
   // const { getDivider, availableShapes } = useOutletContext(); // Fetch shapes dynamically
@@ -67,6 +68,10 @@ const Home = () => {
 
       <div id="news">
         <News />
+      </div>
+
+      <div id="associates">
+        <Associates />
       </div>
 
       <div id="contact">
