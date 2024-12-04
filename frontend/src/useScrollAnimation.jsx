@@ -2,16 +2,24 @@ import { useEffect } from "react";
 
 const useScrollAnimation = () => {
   useEffect(() => {
+    let scrollTimeout;
+    
     const handleScroll = () => {
-      const elements = document.querySelectorAll(".animate-on-scroll");
-      elements.forEach((el) => {
-        if (isElementInView(el)) {
-          el.classList.add("visible");
-        }
+      // Debounce using requestAnimationFrame
+      if (scrollTimeout) {
+        cancelAnimationFrame(scrollTimeout);
+      }
+      
+      scrollTimeout = requestAnimationFrame(() => {
+        const elements = document.querySelectorAll(".animate-on-scroll");
+        elements.forEach((el) => {
+          if (isElementInView(el)) {
+            el.classList.add("visible");
+          }
+        });
       });
     };
 
-    // Check if the element is in view
     const isElementInView = (el) => {
       const rect = el.getBoundingClientRect();
       return (
@@ -22,15 +30,16 @@ const useScrollAnimation = () => {
       );
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
-
-    // Call handleScroll initially to check if any elements are in view on page load
+    
+    // Initial check
     handleScroll();
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) {
+        cancelAnimationFrame(scrollTimeout);
+      }
     };
   }, []);
 };

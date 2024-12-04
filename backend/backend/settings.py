@@ -65,11 +65,30 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
+    'django_brotli.middleware.BrotliMiddleware',  # Add this line for Brotli
+    'django.middleware.gzip.GZipMiddleware',  # Add this line
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# settings.py
+
+GZIP_CONTENT_TYPES = [
+    'text/plain',
+    'text/html',
+    'text/css',
+    'application/javascript',
+    'application/json',
+    'application/xml',
+    'text/xml',
+    'application/xml+rss',
+    'text/javascript',
+]
+
+GZIP_MIN_SIZE = 0  # Force compression for all responses
+
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 

@@ -8,7 +8,7 @@ const StechBanner = () => {
   <div class="w-full">
   <div 
   className="relative flex flex-col items-center p-4 sm:p-8 lg:flex-row lg:justify-between bg-repeat" 
-  style={{ backgroundImage: `url('movingdots.gif')` }}
+  style={{ backgroundImage: `url('movingdots.avif')` }}
 >
   {/* Overlay Background Color */}
   <div className="absolute inset-0 bg-[#4077a3] opacity-85 z-10"></div>

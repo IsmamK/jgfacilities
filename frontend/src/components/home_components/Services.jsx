@@ -39,7 +39,6 @@ const Services = () => {
 
   return (
     <div className="relative " >
-      <img src={data.divider || ''} className="absolute top-0 z-100"  />
 
       <div className={`py-6 sm:py-8 lg:py-12`} 
        style={{ backgroundColor: data.bgColor,color:data.textColor}}      

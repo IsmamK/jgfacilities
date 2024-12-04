@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import useScrollAnimation from '../../useScrollAnimation';
+
 
 const Contact = ({ divider }) => {
   const [formData, setFormData] = useState({
@@ -45,36 +47,68 @@ const Contact = ({ divider }) => {
       });
   }, []);
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
     // Check if all required fields are filled
     if (!formData.name || !formData.email || !formData.message) {
-      alert('Please fill in all the fields.');
-      return;
+        alert('Please fill in all the fields.');
+        return;
     }
 
-    // Check if the email address is valid
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Check if the email address is valid using a more accurate regex
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
-      alert('Please enter a valid email address.');
-      return;
+        alert('Please enter a valid email address.');
+        return;
     }
 
-    // Prepare the email subject and body
-    const subject = 'New Contact Form Submission';
-    const body = `
-      Name: ${formData.name}
-      Email: ${formData.email}
-      Message: ${formData.message}
-    `;
+    // Prepare the form data for submission
+    const data = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+    };
 
-    // Construct the mailto link with form data and predefined subject and body
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setLoading(true);  // Start loading
 
-    // Open the user's default email client with pre-filled content
-    window.location.href = mailtoLink;
-  };
+    fetch(`${apiUrl}/contact-messages/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Server error, please try again later.');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            // Check for error messages from the backend
+            if (data.error) {
+                alert(`Error: ${data.error}`);
+            } else {
+                alert('Message sent successfully!');
+                setFormData({ name: '', email: '', message: '' }); // Reset the form
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert(error.message || 'An error occurred while sending the message. Please try again.');
+        })
+        .finally(() => {
+            setLoading(false);  // Stop loading
+        });
+};
+
+
+
+
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -87,7 +121,6 @@ const Contact = ({ divider }) => {
   return (
     <div className="relative" style={{ backgroundColor: contactData.bgColor, color: contactData.textColor }}>
       {/* Divider */}
-      <img src={divider || ''} className="absolute top-0 w-full" />
       
       {/* Contact Section */}
       <section className="w-full xl:py-24 lg:py-20 py-12">
@@ -105,7 +138,7 @@ const Contact = ({ divider }) => {
                   style={{ backgroundColor: contactData.divsBgColor, color: contactData.divsTextColor }}
                 >
                   <a href="javascript:;" className="w-14 h-14 rounded-full flex items-center justify-center mb-5 transition-all duration-500 group-hover:bg-white cursor-pointer" style={{ backgroundColor: contactData.divsTextColor }}>
-                    <img src={contactData.card1.icon} className="w-14 h-14 rounded-[100%]" />
+                    <img   loading="lazy" src={contactData.card1.icon} className="w-14 h-14 rounded-[100%]" />
                   </a>
                   <h5 className="text-xl font-semibold leading-8 mb-3 transition-all duration-500 group-hover:text-white">{contactData.card1.title}</h5>
                   <p className="text-sm font-normal leading-5 transition-all duration-500 group-hover:text-white">{contactData.card1.description}</p>
@@ -116,7 +149,7 @@ const Contact = ({ divider }) => {
                   style={{ backgroundColor: contactData.divsBgColor, color: contactData.divsTextColor }}
                 >
                   <a href="javascript:;" className="w-14 h-14 rounded-full flex items-center justify-center mb-5 transition-all duration-500 group-hover:bg-white cursor-pointer" style={{ backgroundColor: contactData.divsTextColor }}>
-                    <img src={contactData.card2.icon} className="w-14 h-14 rounded-[100%]" />
+                    <img  loading="lazy" src={contactData.card2.icon} className="w-14 h-14 rounded-[100%]" />
                   </a>
                   <h5 className="text-xl font-semibold leading-8 mb-3 transition-all duration-500 group-hover:text-white">{contactData.card2.title}</h5>
                   <p className="text-sm font-normal leading-5 transition-all duration-500 group-hover:text-white">{contactData.card2.description}</p>

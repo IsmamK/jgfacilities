@@ -9,9 +9,9 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
     <div
       className={`z-10 dark:text-white fixed dark:bg-blue-800 lg:relative lg:translate-x-0 flex flex-col p-10 dark:border-black border-r border-gray-50 min-h-screen bg-white transition-transform duration-300 ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
-      } overflow-y-auto`} // Added `overflow-y-auto` here
+      } `} // Added `overflow-y-auto` here
     > 
-
+<div className='w-[350px]'>
       {/* Close button for smaller screens */}
       <div className="lg:hidden mb-4 relative -left-4 -top-4">
         <button onClick={toggleSidebar} className="btn btn-ghost">
@@ -108,7 +108,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
             <FaBox className='mr-2' /> Visit Live Website 
           </NavLink>
         </li>
-
+      
         <li>
           <NavLink
             to="create-admin" // Update this to your products route
@@ -119,11 +119,22 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
             <FaBox className='mr-2' /> Create Admin
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="messages-list" // Update this to your products route
+            className={({ isActive }) =>
+              `flex items-center rounded-lg font-bold p-2 ${isActive ? 'bg-blue-400 text-white' : 'hover:bg-blue-400 hover:text-white'}`
+            }
+          >
+            <FaBox className='mr-2' /> Messages List
+          </NavLink>
+        </li>
        
       </ul>
       <div className="flex mt-20 justify-between items-center border-t border-gray-300 pt-8">
         <button className="btn btn-md dark:bg-warning text-black btn-warning" onClick={logout}>Log Out</button>
         
+      </div>
       </div>
     </div>
   );

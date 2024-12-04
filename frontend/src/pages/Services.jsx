@@ -59,7 +59,7 @@ const Services = () => {
 
                         {/* Image - start */}
                         <div className="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-[500px] lg:w-[700px]">
-                            <img src={service.heroImage} loading="lazy" alt={service.altText} className="h-full w-full object-cover object-center" />
+                            <img src={service.heroImage} loading="lazy" alt={service.altText} className="h-full w-full object-cover object-center"  />
                         </div>
                         {/* Image - end */}
                     </section>

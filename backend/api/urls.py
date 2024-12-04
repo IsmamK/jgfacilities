@@ -41,4 +41,10 @@ urlpatterns = [
 
  # Projects Section
     path('gallery/', GalleryView.as_view(), name='projects'),
-]
+
+    path('get-service-slugs/', get_service_slugs, name='get_service_slugs'),
+
+    path('contact-messages/', ContactMessageListCreate.as_view(), name='contact-message-list-create'),
+    path('contact-messages/<int:pk>/', ContactMessageDetail.as_view(), name='contact-message-detail'),
+    
+    ]

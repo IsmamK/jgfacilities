@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { servicesData } from '../../servicesData';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa'; // Import social icons
 
@@ -7,13 +6,35 @@ const Footer = () => {
 
   const apiUrl = import.meta.env.VITE_API_URL; // Adjust as needed
   const [data, setData] = useState({"socials":[]});
-  
+  const [servicesData,setServicesData] = useState([])
+
+  useEffect(() => {
+    const fetchServices = async () => {
+        try {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const res = await fetch(`${apiUrl}/get-service-slugs/`);
+            const data = await res.json();
+            setServicesData(data);  // Update state with fetched data
+        } catch (error) {
+            console.error("Error fetching services:", error);
+        } finally {
+            setLoading(false);  // Set loading to false once data is fetched
+        }
+    };
+
+    fetchServices();
+}, []);
+
   useEffect(() => {
     fetch(`${apiUrl}/layout/footer/`) // Replace with actual path or API endpoint
       .then((res) => res.json())
       .then((data) => {setData(data)})
       .catch((error) => console.error("Error loading navbar configuration:", error));
   }, []);
+
+
+
+  
 
   return (
     <>
@@ -28,11 +49,11 @@ const Footer = () => {
       href={social.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="social-icon p-2 rounded-full h-20 w-20"
+      className="social-icon p-2 rounded-full h-20 w-20 "
     >
       <img
         src={social.icon}
-        className="h-16 w-16 p-2 rounded-full object-cover" // Ensure images are contained and circular
+        className="h-16 w-16 p-2 rounded-full object-cover " // Ensure images are contained and circular
         alt={social.name} // It's a good practice to add alt text for accessibility
       />
     </a>
@@ -45,10 +66,10 @@ const Footer = () => {
         <h6 className="font-extrabold text-xl">Company</h6>
         </div>
         <div className='flex lg:flex-col gap-4'>
-        <Link to="/" className="link link-hover" style={{ color: data.textColor }}>Homepage</Link>
-        <Link to="/projects" className="link link-hover" style={{ color: data.textColor }}> Our Projects</Link>
-        <Link to="/gallery" className="link link-hover" style={{ color: data.textColor }}>Gallery of Stunning Images</Link>
-        <Link to="/contact" className="link link-hover" style={{ color: data.textColor }}>Contact Us </Link>
+        <a href="/" className="link link-hover" style={{ color: data.textColor }}>Homepage</a>
+        <a href="/projects" className="link link-hover" style={{ color: data.textColor }}> Our Projects</a>
+        <a href="/gallery" className="link link-hover" style={{ color: data.textColor }}>Gallery of Stunning Images</a>
+        <a href="/contact" className="link link-hover" style={{ color: data.textColor }}>Contact Us </a>
         
         </div>
       </nav>
@@ -57,13 +78,15 @@ const Footer = () => {
       
       <nav className='lg:mx-auto text-xs flex flex-col'> 
       <div>
-        <h6 className="font-extrabold text-xl">About</h6>
+        <h6 className="font-extrabold text-xl">
+          <a href ="/about">About</a>
+          </h6>
         </div>
         <div className='flex lg:flex-col gap-4'>
-        <Link to="/about#about1" className="link link-hover" style={{ color: data.textColor }}>Company Profile</Link>
-        <Link to="/about#message" className="link link-hover" style={{ color: data.textColor }}>Chairman's Message</Link>
-        <Link to="/about#about2" className="link link-hover" style={{ color: data.textColor }}>Mission, Vision and Story</Link>
-        <Link to="/about#team" className="link link-hover" style={{ color: data.textColor }}>Team</Link>
+        <a href="/about/company-profile"  className="link link-hover" style={{ color: data.textColor }}>Company Profile</a>
+        <a href="/about/message" className="link link-hover" style={{ color: data.textColor }}>Chairman's Message</a>
+        <a href="/about/story" className="link link-hover" style={{ color: data.textColor }}>Mission, Vision and Story</a>
+        <a href="/about/team"   className="link link-hover" style={{ color: data.textColor }}>Team</a>
         </div>
       </nav>
 
@@ -73,14 +96,14 @@ const Footer = () => {
         </div>
         <div className='flex lg:flex-col gap-4'>
         {servicesData.map((service, index) => (
-          <Link
+          <a
             key={index}
-            to={`/services/${service.slug}`}
+            href={`/services/${service.slug}`}
             className="link link-hover"
             style={{ color: data.textColor }}
           >
             {service.title}
-          </Link>
+          </a>
           
         ))}
         </div>

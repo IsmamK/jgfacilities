@@ -28,7 +28,7 @@ const Associates = () => {
   return (
     <div className="relative" style={{ backgroundColor: clientsData.bgColor, color: clientsData.textColor }}>
       {/* Divider Image */}
-      {clientsData.divider && <img src={clientsData.divider} alt="Divider" className="absolute top-0 z-100" />}
+      {clientsData.divider && <img src={clientsData.divider} alt="Divider" className="absolute top-0 z-100"  loading="lazy"/>}
       
       <div className="overflow-hidden py-20">
         <div className="flex items-center justify-center">
@@ -47,7 +47,7 @@ const Associates = () => {
               <div key={index} className="mx-2">
                 <Slider.Slide>
                   <a href={client.link} target="_blank" rel="noopener noreferrer">
-                    <img src={client.logo} alt={`Client ${index}`} className="w-24" />
+                    <img src={client.logo} alt={`Client ${index}`} className="w-24 h-16"  loading="lazy"/>
                   </a>
                 </Slider.Slide>
               </div>

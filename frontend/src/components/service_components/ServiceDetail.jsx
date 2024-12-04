@@ -31,13 +31,7 @@ const ServiceDetail = () => {
         <p className="text-lg text-gray-500">Excellence in every detail.</p>
       </div>
 
-      {/* Service Images Section */}
-      <div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <img src="/path-to-image1.jpg" alt="Service" className="w-full h-48 object-cover rounded-lg shadow-md" />
-        <img src="/path-to-image2.jpg" alt="Service" className="w-full h-48 object-cover rounded-lg shadow-md" />
-        <img src="/path-to-image3.jpg" alt="Service" className="w-full h-48 object-cover rounded-lg shadow-md" />
-      </div>
-
+      
       {/* Service Description */}
       <div className="mt-6">
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Overview</h2>

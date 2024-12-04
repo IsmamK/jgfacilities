@@ -27,7 +27,6 @@ const Location = () => {
   return (
     <div className='relative' style={{ backgroundColor: locationData.bgColor, color: locationData.textColor }}>
       {/* Divider */}
-      <img src="" className='absolute top-0 w-full'  />
 
       {/* Location Section */}
       <div className='max-w-7xl mx-auto px-6 py-24 '>

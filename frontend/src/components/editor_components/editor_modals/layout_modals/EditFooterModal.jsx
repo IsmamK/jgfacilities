@@ -99,13 +99,13 @@ const EditFooterModal = ({ isOpen, onClose, footerData, setFooterData }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-8 rounded-lg w-1/3">
-        <h2 className="text-xl font-bold mb-4">Edit Footer</h2>
+      <div className="bg-white p-8 rounded-lg w-1/3 max-h-[80vh] overflow-auto">
+        <h2 className="text-xl font-bold mb-6">Edit Footer</h2>
 
         {/* Background Color Picker */}
-        <div className="mb-4">
-          <label htmlFor="bgColor" className="block">Background Color</label>
-          <div className="hex flex items-center">
+        <div className="mb-6">
+          <label htmlFor="bgColor" className="block text-sm font-medium">Background Color</label>
+          <div className="flex items-center space-x-2">
             <HexColorPicker
               color={newFooterData.bgColor}
               onChange={(color) => setNewFooterData({ ...newFooterData, bgColor: color })}
@@ -113,7 +113,7 @@ const EditFooterModal = ({ isOpen, onClose, footerData, setFooterData }) => {
             <input
               type="text"
               id="bgColor"
-              className="border p-2 ml-2 w-20"
+              className="border p-2 w-20 rounded-md"
               value={newFooterData.bgColor}
               onChange={(e) => setNewFooterData({ ...newFooterData, bgColor: e.target.value })}
             />
@@ -121,9 +121,9 @@ const EditFooterModal = ({ isOpen, onClose, footerData, setFooterData }) => {
         </div>
 
         {/* Text Color Picker */}
-        <div className="mb-4">
-          <label htmlFor="textColor" className="block">Text Color</label>
-          <div className="hex flex items-center">
+        <div className="mb-6">
+          <label htmlFor="textColor" className="block text-sm font-medium">Text Color</label>
+          <div className="flex items-center space-x-2">
             <HexColorPicker
               color={newFooterData.textColor}
               onChange={(color) => setNewFooterData({ ...newFooterData, textColor: color })}
@@ -131,7 +131,7 @@ const EditFooterModal = ({ isOpen, onClose, footerData, setFooterData }) => {
             <input
               type="text"
               id="textColor"
-              className="border p-2 ml-2 w-20"
+              className="border p-2 w-20 rounded-md"
               value={newFooterData.textColor}
               onChange={(e) => setNewFooterData({ ...newFooterData, textColor: e.target.value })}
             />
@@ -139,47 +139,45 @@ const EditFooterModal = ({ isOpen, onClose, footerData, setFooterData }) => {
         </div>
 
         {/* Footer Copy Text */}
-        <div className="mb-4">
-          <label htmlFor="copyText" className="block">Footer Text</label>
+        <div className="mb-6">
+          <label htmlFor="copyText" className="block text-sm font-medium">Footer Text</label>
           <textarea
             id="copyText"
-            className="border p-2 w-full"
+            className="border p-2 w-full rounded-md"
             value={newFooterData.copyText}
             onChange={(e) => setNewFooterData({ ...newFooterData, copyText: e.target.value })}
           />
         </div>
 
         {/* Socials Input */}
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Social Media Links</h3>
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-4">Social Media Links</h3>
           {newFooterData.socials.map((social, index) => (
-            <div key={index} className="mb-4">
-              <div className="flex space-x-2">
+            <div key={index} className="mb-4 flex flex-col space-y-4">
+              <div className="flex items-center space-x-4 ">
                 <input
                   type="text"
-                  className="border p-2 w-2/3"
+                  className="border p-2 w-2/3 rounded-md"
                   placeholder="Social Link"
                   value={social.link}
                   onChange={(e) => handleSocialChange(index, 'link', e.target.value)}
                 />
                 <input
                   type="file"
-                  className="border p-2"
+                  className="border p-2 rounded-md w-1/3"
                   accept="image/*"
                   onChange={(e) => handleIconUpload(index, e)}
                 />
                 {social.icon && typeof social.icon === 'object' && (
-                  <div>
-                    <img
-                      src={URL.createObjectURL(social.icon)}
-                      alt="Icon Preview"
-                      className="w-8 h-8"
-                    />
-                  </div>
+                  <img
+                    src={URL.createObjectURL(social.icon)}
+                    alt="Icon Preview"
+                    className="w-8 h-8 rounded-full"
+                  />
                 )}
                 <button
                   type="button"
-                  className="text-red-500"
+                  className="text-red-500 hover:text-red-700"
                   onClick={() => handleRemoveSocial(index)}
                 >
                   Remove
@@ -189,16 +187,16 @@ const EditFooterModal = ({ isOpen, onClose, footerData, setFooterData }) => {
           ))}
           <button
             type="button"
-            className="text-blue-500 mt-2"
+            className="btn btn-primary"
             onClick={handleAddSocial}
           >
             Add Social Media Link
           </button>
         </div>
 
-        <div className="flex justify-between">
-          <button className="btn btn-secondary" onClick={onClose}>Cancel</button>
-          <button className="btn btn-primary" onClick={handleSave}>Save</button>
+        <div className="flex justify-between mt-6">
+          <button className="bg-gray-300 text-gray-800 p-2 rounded-md hover:bg-gray-400" onClick={onClose}>Cancel</button>
+          <button className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600" onClick={handleSave}>Save</button>
         </div>
       </div>
     </div>

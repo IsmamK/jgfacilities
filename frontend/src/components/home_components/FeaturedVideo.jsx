@@ -32,7 +32,6 @@ const FeaturedVideo = () => {
   return (
     <div className='relative' style={{ backgroundColor: featuredVideoData.colors.bgColor, color: featuredVideoData.colors.textColor }}>
       {/* Divider */}
-      <img src="" className='absolute top-0 w-full' alt="" />
 
       <section className="">
         <div className="pb-20 pt-20 px-20  mx-auto max-w-screen-xl grid lg:grid-cols-2 gap-8 lg:gap-16 ">

@@ -43,7 +43,6 @@ const GridCards = ({ divider, }) => {
 
   return (
     <div className="relative w-full" style={{ backgroundColor: cardData.bgColor, color: cardData.textColor }}>
-      {divider && <img src={divider} className="absolute top-0 z-10 w-full" alt="Divider" />}
 
       <div className="p-10 md:p-20 lg:p-30 mx-auto max-w-96 md:max-w-[1000px] lg:max-w-[1500px]">
         <h1 className="text-center text-4xl md:text-6xl lg:text-7xl font-bold my-5">{cardData.title}</h1>
@@ -58,14 +57,14 @@ const GridCards = ({ divider, }) => {
           {cardData.gridCards.map((card, index) => (
             <div
               key={index}
-              className={`animate-on-scroll slide-up flip-card ${flippedCardIndex === index ? 'flipped' : ''} `}
+              className={` flip-card ${flippedCardIndex === index ? 'flipped' : ''} `}
               onClick={() => handleClick(index)}
               onMouseEnter={() => handleHover(index, true)}
               onMouseLeave={() => handleHover(index, false)}
             >
               <div className="flip-card-inner transform transition-transform duration-500 ">
                 <div className="flip-card-front">
-                  <img className="w-full h-full rounded-lg object-cover" src={card.image} alt={card.title} />
+                  <img className="w-full h-full rounded-lg object-cover" src={card.image} alt={card.title}  loading="lazy"/>
                 </div>
                 <div
                   className="flip-card-back p-5 flex flex-col justify-center rounded-lg"

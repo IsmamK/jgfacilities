@@ -4,15 +4,14 @@ const Contact2 = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [contactData, setContactData] = useState({
-    "title": "Contact Us", 
-    "subtitle": "Reach Out To Us", 
-    "bgColor": "#ffffff", 
-    "textColor": "#ffffff", 
-    "phone": "470-601-1911", 
-    "email": "Pagedone1234@gmail.com", 
-    "imageUrl": "https://pagedone.io/asset/uploads/1696245837.png",
+    "title": "", 
+    "subtitle": "", 
+    "bgColor": "", 
+    "textColor": "", 
+    "phone": "", 
+    "email": "", 
+    "imageUrl": "",
     "addresses":[
-      "789 Oak Lane, Lakeside, TX 54321", 
 
     ]
   }
@@ -36,31 +35,40 @@ const Contact2 = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const [loading, setLoading] = useState(false);
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate form inputs
+    // Check if all required fields are filled
     if (!formData.name || !formData.email || !formData.message) {
-      alert("Please fill in all the fields.");
-      return;
+        alert('Please fill in all the fields.');
+        return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Check if the email address is valid using a more accurate regex
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
-      alert("Please enter a valid email address.");
-      return;
+        alert('Please enter a valid email address.');
+        return;
     }
 
-    const subject = "New Contact Form Submission";
-    const body = `
-      Name: ${formData.name}
-      Email: ${formData.email}
-      Message: ${formData.message}
-    `;
+    // Create a mailto link
+    const mailtoLink = `mailto:${contactData.email}?subject=Contact from ${formData.name}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nMessage:\n${formData.message}`
+    )}`;
 
-    const mailtoLink = `mailto:${contactData.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Open the mailto link
     window.location.href = mailtoLink;
-  };
+
+    // Optionally reset the form
+    setFormData({ name: '', email: '', message: '' });
+};
+
+  
+
+  
 
   if (!contactData) {
     return <div>Loading...</div>;

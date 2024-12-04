@@ -28,7 +28,6 @@ const WhyUs = () => {
       className="relative"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
-      {divider && <img src={divider} className="absolute top-0 w-full" alt="" />}
 
       <div className="py-6 sm:py-8 lg:py-12">
         <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
@@ -43,7 +42,7 @@ const WhyUs = () => {
             {features.map((feature, index) => (
               <div key={index} className="flex flex-col items-center animate-on-scroll rotate-in">
                 <div className="mb-2 flex h-12 w-12 items-center justify-center sm:mb-4 md:h-14 md:w-14 relative">
-                  <img src={feature.iconUrl} alt={`${feature.title} icon`} className="h-full w-full object-contain  " />
+                  <img src={feature.iconUrl} alt={`${feature.title} icon`} className="h-full w-full object-contain  "  loading="lazy"/>
                   {/* <div class="absolute inset-0 bg-black opacity-50"></div> */}
                 </div>
                 <h3 className="mb-2 text-center text-lg font-semibold md:text-xl">{feature.title}</h3>

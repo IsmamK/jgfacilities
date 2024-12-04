@@ -52,9 +52,10 @@ const Gallery = () => {
                 alt="gallery"
                 className="w-full h-64 object-cover object-center"
                 src={item.image}
+                loading='lazy'
               />
               <div
-                className="absolute inset-0 bg-gray-800  border-4 border-gray-200 bg-opacity-75 opacity-0 hover:opacity-100 flex flex-col justify-center items-center p-6 transition-opacity"
+                className="absolute inset-0 bg-gray-800  border-4 border-gray-200ç bg-opacity-75 opacity-0 hover:opacity-100 flex flex-col justify-center items-center p-6 transition-opacity"
                 style={{
                   backgroundColor: gallery.imageBgColor,
                 }}

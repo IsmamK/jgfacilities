@@ -27,7 +27,6 @@ const Cards = () => {
 
   return (
     <div className='relative'>
-      <img src={data.divider || ""} className='absolute top-0 z-100' />
       <div className='hero p-20 lg:p-30 flex flex-col-reverse md:flex-col gap-10 md:gap-20' style={{ backgroundColor: data.bgColor, color: data.textColor }}>
       <h1 className='text-5xl lg:text-7xl font-bold "'>{data.heading}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center justify-center g:mt-28">
@@ -40,6 +39,7 @@ const Cards = () => {
             >
               {/* Image */}
               <img 
+               loading="lazy"
                 src={card.imageSrc} 
                 alt={card.title} 
                 className="object-cover w-full h-full rounded-lg transition-transform transform hover:border-8 hover:border-yellow-300" 

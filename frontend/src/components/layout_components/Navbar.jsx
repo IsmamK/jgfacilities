@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { servicesData } from '../../servicesData.js';
+// import { servicesData } from '../../servicesData.js';
 
 const Navbar = () => {
   const [navbarData, setNavbarData] = useState({
@@ -15,7 +15,25 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSubMenuIndex, setOpenSubMenuIndex] = useState(null); // Track which submenu is open
   const apiUrl = import.meta.env.VITE_API_URL;
+  const [servicesData,setServicesData] = useState([])
 
+  useEffect(() => {
+    const fetchServices = async () => {
+        try {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const res = await fetch(`${apiUrl}/get-service-slugs/`);
+            const data = await res.json();
+            setServicesData(data);  // Update state with fetched data
+        } catch (error) {
+            console.error("Error fetching services:", error);
+        } finally {
+            setLoading(false);  // Set loading to false once data is fetched
+        }
+    };
+
+    fetchServices();
+}, []);
+  
   useEffect(() => {
     fetch(`${apiUrl}/layout/navbar/`)
       .then((res) => res.json())
@@ -28,23 +46,28 @@ const Navbar = () => {
     { label: 'About', path: '/about',
       subItems:[
         {
+          label:"About Us",
+          path:"/about"
+
+        },
+        {
           label:"Company Profile",
-          path:"/about#about1"
+          path:"/about/company-profile"
 
         },
         {
           label:"Chairman's Message",
-          path:"/about#message"
+          path:"/about/message"
 
         },
         {
           label:"Mission,Vision and story",
-          path:"/about#about2"
+          path:"/about/story"
 
         },
         {
           label:"Team",
-          path:"/about#team"
+          path:"/about/team"
 
         },
       ]
@@ -82,6 +105,7 @@ const Navbar = () => {
               src={`data:image/png;base64,${navbarData.logo}`}
               alt="Logo"
               className="object-center object-contain"
+             
             />
           </div>
         </Link>
@@ -101,7 +125,7 @@ const Navbar = () => {
             isMenuOpen ? 'block' : 'hidden'
           } lg:flex items-center`}
         >
-          <ul className="flex flex-col lg:flex-row gap-4 lg:gap-6 p-4 lg:p-0 lg:text-2xl">
+          <ul className="flex flex-col lg:flex-row gap-10 lg:gap-20 p-4 lg:p-0 lg:text-2xl">
             {routes.map((route, index) => (
               <li key={index} className="relative group">
                 {route.subItems ? (
@@ -123,7 +147,7 @@ const Navbar = () => {
                       </svg>
                     </div>
                     <ul
-                      className={`absolute right-0 top-8 bg-white shadow-md rounded-md p-2 w-48 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200 z-10 ${
+                      className={`absolute left-0 top-8 bg-white shadow-md rounded-md p-2 w-48 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200 z-10 ${
                         openSubMenuIndex === index ? 'block' : 'hidden'
                       }`}
                       onMouseLeave={() => toggleSubMenu(index)}
@@ -133,12 +157,12 @@ const Navbar = () => {
                           key={subIndex}
                           className="py-1 px-2 hover:bg-gray-100 rounded"
                         >
-                          <Link
-                            to={subItem.path}
+                          <a
+                            href={subItem.path}
                             style={{ color: navbarData.textColor }}
                           >
                             {subItem.label}
-                          </Link>
+                          </a>
                         </li>
                       ))}
                     </ul>
@@ -157,7 +181,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Link to="/" className="hidden lg:flex items-center">
+        <a target ="_blank" href="https://stechgroupbd.com/" className="hidden lg:flex items-center">
           <div className="w-40 h-24 flex items-center justify-center">
             <img
               src={`data:image/png;base64,${navbarData.logo2}`}
@@ -165,7 +189,7 @@ const Navbar = () => {
               className="object-center object-contain"
             />
           </div>
-        </Link>
+        </a>
       </div>
     </nav>
   );

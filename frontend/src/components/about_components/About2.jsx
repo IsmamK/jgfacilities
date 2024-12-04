@@ -1,10 +1,56 @@
+import { useState,useEffect } from "react";
 import React from 'react';
+import AboutSidebar from "../sidebar_components/AboutSidebar";
 
-const About2 = ({ about2 }) => {
+const About2 = ({from_about}) => {
+  const [about2, setAbout2] = useState({
+    "title": "",
+    "description": "",
+    "stats": [],
+    "buttonLabel": "",
+    "buttonLink": "",
+    "imageUrl": "",
+    "bgColor": "",
+    "textColor": ""
+  })
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   if (!about2) return null; // Prevent rendering if component data is not available
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const [data] = await Promise.all([
+          fetch(`${apiUrl}/about/about2`).then(res => res.json()),
+        ]);
+
+        setAbout2(data);
+        console.log(data);  // Change alert to console.log for better debugging
+      
+      } catch (err) {
+        setError('Failed to fetch data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [apiUrl]);
+
+  if (loading) return <span className="loading loading-dots loading-lg"></span>
+  if (error) return <div>{error}</div>
 
   return (
     <section className="py-24 relative xl:mr-0 lg:mr-5 mr-0" style={{ backgroundColor: about2.bgColor, color: about2.textColor }}>
+        {!from_about && (
+        <AboutSidebar individual = {true}/>
+      )
+
+      }
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
         <div className="w-full justify-start items-center xl:gap-12 gap-10 grid lg:grid-cols-2 grid-cols-1">
           <div className="w-full flex-col justify-center lg:items-start items-center gap-10 inline-flex">
@@ -48,7 +94,7 @@ const About2 = ({ about2 }) => {
           </div>
           <div className="w-full lg:justify-start justify-center items-start flex">
             <div className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-white rounded-3xl sm:border border-gray-200 relative">
-              <img className="sm:mt-5 sm:ml-5 w-full h-full rounded-3xl object-cover" src={about2.imageUrl} alt="About Us" />
+              <img className="sm:mt-5 sm:ml-5 w-full h-full rounded-3xl object-cover" src={about2.imageUrl} alt="About Us"  loading="lazy"/>
             </div>
           </div>
         </div>

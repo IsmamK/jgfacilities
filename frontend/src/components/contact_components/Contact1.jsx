@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const Contact1 = () => {
+const Contact1 = ({ onScrollToContact2, bgColor, textColor }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  const [content, setContent] = useState({
+  const [content, setContent] = React.useState({
     header: ' ',
     subHeader: '',
     buttonText: '',
@@ -15,7 +15,7 @@ const Contact1 = () => {
     locations: [],
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Simulate fetching data from an API
     fetch(`${apiUrl}/contact/contact1`)
       .then(res => res.json())
@@ -28,6 +28,11 @@ const Contact1 = () => {
   if (!content) {
     return <div style={{ textAlign: 'center', padding: '6rem 0' }}>Loading...</div>;
   }
+
+  const handleClick = () => {
+    console.log("Button clicked, scrolling to Contact2...");
+    onScrollToContact2();  // Trigger scroll action
+  };
 
   return (
     <div>
@@ -42,9 +47,12 @@ const Contact1 = () => {
                 {content.subHeader}
               </p>
               <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
-                <a className='btn rounded-full border-none' href={content.buttonLink} style={{backgroundColor: content.textColor, color: content.bgColor }}>
+                <button 
+                  className='btn rounded-full border-none' 
+                  onClick={handleClick} // Trigger scroll action on click
+                  style={{backgroundColor: content.textColor, color: content.bgColor }}>
                   {content.buttonText}
-                </a>
+                </button>
               </div>
             </div>
             <div style={{ borderLeft: `2px solid white`, padding: '1.5rem' }}>
@@ -75,6 +83,7 @@ const Contact1 = () => {
                     src={`data:image/jpeg;base64,${location.imgSrc}`} 
                     alt={`${location.country} image`} 
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    loading="lazy"
                   />
                   <div style={{ position: 'absolute', bottom: '1.5rem', textAlign: 'center', padding: '0 1.5rem' }} className='text-white'>
                     <h5 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.5rem' }}>

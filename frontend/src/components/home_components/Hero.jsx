@@ -83,18 +83,20 @@ const Hero = () => {
 
         {/* Right Section: Images */}
         <div className="lg:w-1/2 relative flex flex-col lg:flex-row items-center justify-center gap-20 lg:gap-6">
-          <div className="animate-on-scroll slide-up relative w-60 h-60 lg:w-72 lg:h-72 md:w-96 md:h-96 overflow-hidden rounded-xl shadow-xl transform hover:rotate-1 hover:scale-105 transition-transform">
+          <div className="animate-on-scroll slide-up relative w-60 h-60 lg:w-72 lg:h-72  overflow-hidden rounded-xl shadow-xl transform hover:rotate-1 hover:scale-105 transition-transform">
             <img
               src={heroData.image1}
               alt={heroData.altText1}
-              className="w-full h-full object-cover"
+              className="w-60 h-60 md:w-72 md:h-72 object-cover"
+              loading="lazy" // Add lazy loading
             />
           </div>
           <div className="animate-on-scroll slide-down relative w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-xl shadow-xl transform hover:-rotate-1 hover:scale-105 transition-transform -mt-8">
             <img
               src={heroData.image2}
               alt={heroData.altText2}
-              className="w-full h-full object-cover"
+              className="w-60 h-60 md:w-80 md:h-80 object-cover"
+              loading="lazy" // Add lazy loading
             />
           </div>
         </div>

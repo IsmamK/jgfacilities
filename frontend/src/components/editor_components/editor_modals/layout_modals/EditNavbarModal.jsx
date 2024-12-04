@@ -157,28 +157,6 @@ const EditNavbarModal = ({ isOpen, onClose, setNavbarData }) => {
           </div>
         </div>
 
-        {/* Navbar Links Management */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold">Manage Navbar Links</h3>
-          {newNavbarData.navbarLinks.map((link, index) => (
-            <div key={index} className="flex items-center mb-4">
-              <input
-                type="text"
-                value={link.label}
-                onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
-                className="border p-2 w-full text-sm mr-4"
-                placeholder="Link Label"
-              />
-              <input
-                type="text"
-                value={link.path}
-                onChange={(e) => handleLinkChange(index, 'path', e.target.value)}
-                className="border p-2 w-full text-sm"
-                placeholder="Link Path"
-              />
-            </div>
-          ))}
-        </div>
 
         {/* Save and Close */}
         <div className="flex justify-end space-x-4">
